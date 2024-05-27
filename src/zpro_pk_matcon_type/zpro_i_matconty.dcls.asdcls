@@ -1,0 +1,5 @@
+@MappingRole: true
+define role ZPRO_I_MATCONTY {
+  grant select on ZPRO_I_MATCONTY
+  where ( ) = ASPECT pfcg_auth ( 'S_TABU_NAM', ACTVT = '03', TABLE = 'ZPRO_I_MATCONTY' );
+}

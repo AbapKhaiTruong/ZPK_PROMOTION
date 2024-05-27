@@ -1,0 +1,220 @@
+@Metadata.layer: #CORE
+annotate entity ZPRO_I_ITEM with
+
+{
+  @UI.facet: [
+    { id:'Header',
+      purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Promotion item',
+      targetQualifier: 'Header', // Refers to lineItems with @UI.fieldGroup: [{qualifier: 'Fieldgroup:HeaderItems'}]
+      position: 1 },
+  { id:'HeaderIDenti',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'General ',
+      position: 2 },
+    { id: 'FOC_Collection',
+      type: #COLLECTION,
+      label: 'FOC Material',
+      position: 3 },
+    { id: 'FOC1',
+      parentId: 'FOC_Collection',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'FOC Material 1',
+      targetQualifier: 'FOC1',
+      position: 1 },
+   { id: 'FOC2',
+      parentId: 'FOC_Collection',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'FOC Material 2',
+      targetQualifier: 'FOC2',
+      position: 2 },
+   { id: 'FOC3',
+      parentId: 'FOC_Collection',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'FOC Material 3',
+      targetQualifier: 'FOC3',
+      position: 3 },
+  { id: 'FOC4',
+      parentId: 'FOC_Collection',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'FOC Material 4',
+      targetQualifier: 'FOC4',
+      position: 4 },
+  { id: 'FOC5',
+      parentId: 'FOC_Collection',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'FOC Material 5',
+      targetQualifier: 'FOC5',
+      position: 5 },
+  { id:        'ItemSubCondition',
+     purpose:   #STANDARD,
+     type:      #LINEITEM_REFERENCE,
+     label:     'Sub condition',
+     position:  3,
+     hidden : #( hiddenSubCondition ),
+     targetElement: '_ItemSubCondition'
+   }
+  ]
+
+  @UI : {
+    lineItem: [{ position: 1 }],
+    fieldGroup: [{ qualifier: 'Header', position: 1 } ] }
+  pronr;
+  @UI : {
+    lineItem: [{ position: 2 }],
+    fieldGroup: [{ qualifier: 'Header', position: 2 } ] }
+  proit;
+  @UI : {
+    lineItem: [{ position: 3 }],
+    identification: [{ position: 3 }]  }
+  cond_type;
+  @UI : {
+    lineItem: [{ hidden: true }]  }
+  fieldname;
+  @UI : {
+    lineItem: [{ position: 5 }],
+    identification: [{ position: 5 }]  }
+  @EndUserText.label: 'Valid to'
+  validto;
+  @UI : {
+      lineItem: [{ position: 4 }],
+      identification: [{ position: 4 }]  }
+  @EndUserText.label: 'Valid from'
+  validfrom;
+  @UI : {
+    lineItem: [{ position: 6 }],
+    identification: [{ position: 6 }]  }
+  cond_val;
+  @UI : {
+    lineItem: [{ position: 7 }],
+    identification: [{ position: 7 }]  }
+  minval;
+  @UI : {
+    lineItem: [{ position: 8 }],
+    identification: [{ position: 8 }] }
+  unit;
+  @UI : {
+    lineItem: [{ position: 9 }],
+    identification: [{ position: 9 }] }
+  foreach;
+  //////////////////////////////////////////////////////////////////
+  // FOC 1
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC1', position: 1 }] }
+  @EndUserText.label: 'STT 1'
+  stt1;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC1', position: 2 }] }
+  @EndUserText.label: 'Add.FG 1'
+  addfg1;
+  @UI : {
+    lineItem: [{ hidden: true }] }
+  @EndUserText.label: 'Unit FOC 1'
+  unitfg1;
+  @UI : {
+      lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC1', position: 4 }] }
+  @EndUserText.label: 'FOC Material 1'
+  matnr_fg1;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC1', hidden: false, position: 5 }] }
+  matkl_fg1;
+  //////////////////////////////////////////////////////////////////
+  // FOC 2
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC2', hidden: false, position: 1  }] }
+  stt2;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC2', hidden: false, position: 2 }] }
+  @EndUserText.label: 'Add.FG 2'
+  addfg2;
+  @UI : {
+    lineItem: [{ hidden: true }]
+     }
+  unitfg2;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC2', hidden: false, position: 4}] }
+  matnr_fg2;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC2', hidden: false, position: 5 }] }
+  matkl_fg2;
+  //////////////////////////////////////////////////////////////////
+  // FOC 3
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC3', hidden: false, position: 1  }] }
+  stt3;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC3', hidden: false, position: 2 }] }
+  @EndUserText.label: 'Add.FG 3'
+  addfg3;
+  @UI : {
+    lineItem: [{ hidden: true }],
+    fieldGroup: [{ qualifier: 'FOC3', hidden: true, position: 3 }] }
+  unitfg3;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC3', hidden: false, position: 4 }] }
+  @EndUserText.label: 'Material FOC 3'
+  matnr_fg3;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC3', hidden: false, position: 5  }] }
+  matkl_fg3;
+  //////////////////////////////////////////////////////////////////
+  // FOC 4
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC4', hidden: false, position: 1 }] }
+  stt4;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC4', hidden: false, position: 2 }] }
+  @EndUserText.label: 'Add.FG 4'
+  addfg4;
+  @UI : {
+    lineItem: [{ hidden: true }],
+    fieldGroup: [{ qualifier: 'FOC4', hidden: true, position: 3 }] }
+  unitfg4;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC4', hidden: false, position: 4 }] }
+  matnr_fg4;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC4', hidden: false, position: 5 }] }
+  matkl_fg4;
+  //////////////////////////////////////////////////////////////////
+  // FOC 5
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC5', hidden: false, position: 1 }] }
+  stt5;
+  @UI : {
+      lineItem: [{ hidden: false }],
+      fieldGroup: [{ qualifier: 'FOC5', hidden: false, position: 2 }] }
+  @EndUserText.label: 'Add.FG 5'
+  addfg5;
+  @UI : {
+    lineItem: [{ hidden: true }],
+    fieldGroup: [{ qualifier: 'FOC5', hidden: true, position: 3 }] }
+  unitfg5;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC5', hidden: false, position: 4 }] }
+  matnr_fg5;
+  @UI : {
+    lineItem: [{ hidden: false }],
+    fieldGroup: [{ qualifier: 'FOC5', hidden: false, position: 5 }] }
+  matkl_fg5;
+
+}

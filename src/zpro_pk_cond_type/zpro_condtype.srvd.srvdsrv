@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZPRO_I_COND_TYPE_S'
+define service ZPRO_CONDTYPE {
+  expose ZPRO_I_COND_TYPE_S as ConditionTypeAll;
+  expose ZPRO_I_COND_TYPE as ConditionType;
+}

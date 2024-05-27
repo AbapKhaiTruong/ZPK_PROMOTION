@@ -1,0 +1,29 @@
+@Metadata.layer: #CORE
+annotate view ZPRO_I_MSUBCO with
+{
+  @UI.facet: [
+          { id:'MaterialSubContionIdenty',
+          type: #IDENTIFICATION_REFERENCE,
+          label: 'Material Sub Condition',
+          position: 1 }]
+  @UI.hidden: true
+  pronr;
+  @UI.hidden: true
+  matconid;
+  @UI.hidden: true
+  msubcoid;
+  @UI : {
+     lineItem: [{ position: 4 }],
+     identification: [{ position: 4 }]  }
+  cond;
+  @UI : {
+     lineItem: [{ position: 4 }],
+     identification: [{ position: 4 }]  }
+  opti;
+  @UI : {
+     lineItem: [{ position: 4 }],
+     identification: [{ position: 4 }]  }
+  cond_val;
+  @UI.hidden: true
+  fieldname;
+}

@@ -1,0 +1,30 @@
+@Metadata.layer: #CORE
+annotate entity ZPRO_I_GENCOND with
+{
+  @UI.facet: [
+        { id:'GeneralContionIdenty',
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'General Condition',
+        position: 1 } ]
+  @UI.hidden: true
+  pronr;
+  @UI.hidden: true
+  genconid;
+  @UI : {
+    lineItem: [{ position: 1 }],
+    identification: [{ position: 1 } ] }
+  stt;
+  @UI : {
+    lineItem: [{ position: 2 }],
+    identification: [{  position: 2 } ] }
+  cond;
+  @UI : {
+    lineItem: [{ position: 3 }],
+    identification: [{  position: 3 } ] }
+  opti;
+  @UI : {
+    lineItem: [{ position: 4 }],
+    identification: [{  position: 4 } ] }
+  cond_val;
+
+}

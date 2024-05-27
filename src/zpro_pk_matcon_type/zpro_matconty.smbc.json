@@ -1,0 +1,38 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Material Condition Type",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "ZPRO_UI_MATCONTY_O4",
+    "serviceName": "ZPRO_UI_MATCONTY_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "ConditionTypeAll",
+    "name": "Condition Type",
+    "configurationGroup": "",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "ConditionTypeAll",
+        "variantManagement": "control",
+        "editableHeaderContent": true
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "ConditionType",
+        "tableType": "gridTable",
+        "selectionMode": "single",
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "enableFullScreen": true,
+        "rowCountMode": "auto"
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'ConditionType', 
+    typeNamePlural: 'ConditionTypes', 
+    title: {
+      type: #STANDARD, 
+      label: 'Condition Type', 
+      value: 'Protyp'
+    }
+  }
+}
+annotate view ZPRO_I_MATCONTY with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  }, 
+  {
+    type: #FOR_ACTION, 
+    dataAction: 'CopyConditionType', 
+    label: 'Copy Selected Entry', 
+    invocationGrouping: #CHANGE_SET
+  } ]
+  @UI.facet: [ {
+    id: 'ZPRO_I_MATCONTY', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Condition Type', 
+    position: 1 
+  } ]
+  Protyp;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  CondType;
+  
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'CondTypeTxt'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'CondTypeTxt'
+  } ]
+  CondTypeTxt;
+  
+  @UI.identification: [ {
+    position: 4 
+  } ]
+  @UI.lineItem: [ {
+    position: 4 
+  } ]
+  Fieldname;
+  
+  @UI.identification: [ {
+    position: 5 , 
+    label: 'Searchhelp'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 , 
+    label: 'Searchhelp'
+  } ]
+  Searchhelp;
+}

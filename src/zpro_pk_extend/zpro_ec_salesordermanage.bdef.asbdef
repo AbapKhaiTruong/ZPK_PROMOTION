@@ -1,0 +1,12 @@
+extension for projection;
+
+extend behavior for SalesOrder
+{
+  use action ZZFindAvailabePromotion;
+//  use action ZZChoosePromotion;
+}
+
+extend behavior for SalesOrderItem
+{
+  use action ZZChoosePromotionItem;
+}

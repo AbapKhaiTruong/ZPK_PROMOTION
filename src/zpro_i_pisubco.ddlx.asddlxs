@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+annotate view ZPRO_I_PISUBCO with
+{
+  @UI.facet: [
+            { id:'ItemSubContionIdenty',
+              type: #IDENTIFICATION_REFERENCE,
+              label: 'Item Sub Condition',
+              position: 1 }]
+  @UI.hidden: true
+  pronr;
+  @UI.hidden: true
+  proit;
+  @UI.hidden: true
+  pisubcoid;
+  @UI : {
+    lineItem: [{ position: 1 }],
+    identification: [{ position: 1 }]  }
+  cond;
+  @UI : {
+  lineItem: [{ position: 2 }],
+  identification: [{ position: 2 }]  }
+  cond_val;
+  @UI.hidden: true
+  fieldname;
+  @UI : {
+  lineItem: [{ position: 3 }],
+  identification: [{ position: 3 }]  }
+  minval;
+  @UI : {
+  lineItem: [{ position: 4 }],
+  identification: [{ position: 4 }]  }
+  unit;
+
+
+}

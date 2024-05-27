@@ -1,0 +1,73 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Object Page - Promotion',
+    typeNamePlural: 'Promotion',
+    title: {
+        value: 'prodes',
+        type: #STANDARD
+    },
+    description: {
+        label: 'Program number',
+        type: #STANDARD,
+        value: 'pronr'
+    }
+}
+annotate entity ZPRO_I_HEADER with
+{
+  @UI.facet: [
+  
+  
+  
+   { id:   'Header',
+     type: #IDENTIFICATION_REFERENCE,
+     label:  'General',
+     position:  10 },
+   { id:        'PromotionItem',
+     purpose:   #STANDARD,
+     type:      #LINEITEM_REFERENCE,
+     label:     'Promotion Item',
+     position:  20,
+     targetElement: '_PromotionItem'
+   },
+   { id:        'GeneralContion',
+     purpose:   #STANDARD,
+     type:      #LINEITEM_REFERENCE,
+     label:     'General Contion',
+     position:  30,
+     targetElement: '_GeneralCondition'
+   },
+   { id:        'MaterialContion',
+     purpose:   #STANDARD,
+     type:      #LINEITEM_REFERENCE,
+     label:     'Material Contion',
+     position:  40,
+     targetElement: '_MaterialCondition'
+   }
+  ]
+   @UI : {
+    lineItem: [{ hidden: true }] }
+  pronr;
+  @UI.lineItem: [{ position: 2 }]
+  @UI.identification: [{ position: 2 }]
+  protyp;
+  @UI.lineItem: [{ position: 3 }]
+  @UI.identification: [{ position: 3 }]
+  prodes;
+  @UI.lineItem: [{ position: 4 }]
+  @UI.identification: [{ position: 4 }]
+  @EndUserText.label: 'Valid from'
+  validfrom;
+  @UI.lineItem: [{ position: 5 }]
+  @UI.identification: [{ position: 5 }]
+  @EndUserText.label: 'Valid to'
+  validto;
+  @UI.lineItem: [{ position: 6 }]
+  @UI.identification: [{ position: 6 }]
+  calrule;
+  @UI.lineItem: [{ position: 5 }]
+  @UI.identification: [{ position: 5 }]
+  regsta;
+  @UI.lineItem: [{ position: 7 }]
+  @UI.identification: [{ position: 7 }]
+  propt;
+}

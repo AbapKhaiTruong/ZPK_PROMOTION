@@ -1,0 +1,73 @@
+managed with additional save implementation in class ZBP_PRO_I_COND_TYPE_S unique;
+strict;
+with draft;
+define behavior for ZPRO_I_COND_TYPE_S alias ConditionTypeAll
+draft table ZPRO_TB_CON_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   HideTransport,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _ConditionType { create ( features : instance ); with draft; }
+}
+
+define behavior for ZPRO_I_COND_TYPE alias ConditionType
+persistent table ZPRO_TB_CONDTYP
+draft table ZPRO_TB_CONDT_D
+lock dependent by _ConditionTypeAll
+authorization dependent by _ConditionTypeAll
+
+{
+  field ( mandatory : create )
+   Protyp,
+   CondType;
+
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   Protyp,
+   CondType;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  factory action ( features : instance ) CopyConditionType parameter ZPRO_COND_TYPE [1];
+
+  mapping for ZPRO_TB_CONDTYP
+  {
+    Protyp = PROTYP;
+    CondType = COND_TYPE;
+    CondTypeTxt = COND_TYPE_TXT;
+    Fieldname = FIELDNAME;
+    Searchhelp = SEARCHHELP;
+  }
+
+  association _ConditionTypeAll { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

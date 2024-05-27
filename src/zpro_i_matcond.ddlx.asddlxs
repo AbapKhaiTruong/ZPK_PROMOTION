@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+annotate entity ZPRO_I_MATCOND with
+{
+  @UI.facet: [
+        { id:'MaterialContionIdenty',
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'General Condition',
+        position: 1 },
+   { id:        'MaterialSubCondition',
+     purpose:   #STANDARD,
+     type:      #LINEITEM_REFERENCE,
+     label:     'Sub condition',
+     position:  20,
+     hidden : #( hiddenSubCondition ),
+     targetElement: '_MaterialSubCondition'
+   } ]
+  @UI.hidden: true
+  pronr;
+  @UI : {
+    lineItem: [{ position: 1 }],
+    identification: [{ position: 1 } ] }
+  stt;
+  @UI : {
+    lineItem: [{ position: 2 }],
+    identification: [{  position: 2 } ] }
+  cond;
+  @UI : {
+    lineItem: [{ position: 3 }],
+    identification: [{  position: 3 } ] }
+  opti;
+  @UI : {
+    lineItem: [{ position: 4 }],
+    identification: [{  position: 4 } ] }
+  cond_val;
+  @UI.hidden: true
+  fieldname;
+  @UI.hidden: true
+  hiddenSubCondition;
+  @UI.hidden: true
+  matconid;
+
+}

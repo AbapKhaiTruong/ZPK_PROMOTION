@@ -1,0 +1,31 @@
+extension using interface i_salesordertp
+implementation in class zbp_pro_cl_salesordertp unique;
+
+extend behavior for SalesOrder
+{
+
+  action ( authorization : update, features : instance ) ZZFindAvailabePromotion;
+
+  action ( authorization : update, features : instance, precheck ) ZZChoosePromotion
+    parameter ZPRO_A_CHOOSEPROMOTION result [0..1] $self;
+
+  side effects
+  {
+    action ZZFindAvailabePromotion affects messages;
+    action ZZChoosePromotion affects entity _Item, entity _PricingElement;
+  }
+}
+
+extend behavior for SalesOrderItem
+
+{
+//  field ( readonly ) zz_profoc_ind_sdi, zz_pro_higherlvl_sdi, zz_pronr_sdi;
+  action ( authorization : update, features : instance, precheck ) ZZChoosePromotionItem
+    parameter ZPRO_A_CHOOSEPROMOTIONIT result [0..1] $self;
+
+
+  side effects
+  {
+    action ZZChoosePromotionItem affects $self, entity _ItemPricingElement;
+  }
+}

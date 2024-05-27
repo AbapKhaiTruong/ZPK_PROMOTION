@@ -1,0 +1,9 @@
+@EndUserText.label: 'Promotion'
+define service ZPRO {
+  expose ZPRO_I_HEADER  as Promotion;
+  expose ZPRO_I_ITEM    as PromotionItem;
+  expose ZPRO_I_GENCOND as GeneralCondition;
+  expose ZPRO_I_MATCOND as MaterialCondition;
+  expose ZPRO_I_MSUBCO  as MaterialSubCondition;
+  expose ZPRO_I_PISUBCO as ItemSubCondition;
+}

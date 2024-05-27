@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZPRO_I_MATCONTY_S'
+define service ZPRO_MATCONTY {
+  expose ZPRO_I_MATCONTY_S as ConditionTypeAll;
+  expose ZPRO_I_MATCONTY as ConditionType;
+}

@@ -1,0 +1,147 @@
+managed implementation in class zbp_pro_manage unique;
+strict;
+with draft;
+
+define behavior for ZPRO_I_HEADER alias Promotion
+persistent table zpro_tb_header
+draft table zpro_tb_header_d
+early numbering
+etag master locallastchanged
+lock master total etag lastchanged
+authorization master ( instance )
+{
+  field ( readonly )
+  pronr,
+  lastchanged,
+  calrule_txt,
+  regsta_txt,
+  propt_txt,
+  locallastchanged;
+
+  field ( mandatory : create )
+  protyp;
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+
+  validation validatePromotionValidDates on save { field validto, validfrom; create; update; }
+
+  determine action DetActPromotionValidDates { validation validatePromotionValidDates; }
+  determine action DetActValidDates { validation PromotionItem~validateDates; }
+
+  side effects
+  {
+    determine action DetActValidDates executed on entity _PromotionItem affects messages;
+    determine action DetActPromotionValidDates executed on $self affects messages;
+  }
+
+  draft determine action Prepare;
+  association _PromotionItem { create; with draft; }
+  association _GeneralCondition { create; with draft; }
+  association _MaterialCondition { create; with draft; }
+
+}
+
+define behavior for ZPRO_I_ITEM alias PromotionItem
+persistent table zpro_tb_item
+draft table zpro_tb_item_d
+early numbering
+lock dependent by _Promotion
+authorization dependent by _Promotion
+{
+
+  field ( readonly )
+  pronr,
+  proit;
+
+  field ( mandatory : create ) cond_type;
+
+  validation validateDates on save { field validto, validfrom; create; update; }
+  field ( features : instance ) cond_val, unit, minval;
+
+  determination onModifyItemConditon on modify { field cond_type; }
+  side effects { field cond_type affects field hiddenSubCondition, entity _ItemSubCondition, permissions ( field cond_val, field unit, field minval , create _ItemSubCondition, update _ItemSubCondition ); }
+  update;
+  delete;
+  association _Promotion { with draft; }
+  association _ItemSubCondition { create; with draft; }
+}
+
+define behavior for ZPRO_I_GENCOND alias GeneralCondition
+persistent table zpro_tb_gencond
+draft table zpro_tb_gencon_d
+late numbering
+lock dependent by _Promotion
+authorization dependent by _Promotion
+{
+  field ( readonly )
+  pronr,
+  genconid;
+  update;
+  delete;
+  association _Promotion { with draft; }
+}
+
+define behavior for ZPRO_I_MATCOND alias MaterialCondition
+persistent table zpro_tb_matcon
+early numbering
+draft table zpro_tb_matcon_d
+lock dependent by _Promotion
+authorization dependent by _Promotion
+{
+  field ( readonly )
+  pronr,
+  matconid;
+
+  field ( features : instance ) cond_val, opti;
+
+  determination onModifyMaterialConditon on modify { field cond; }
+  side effects { field cond affects field hiddenSubCondition, entity _MaterialSubCondition, permissions ( field cond_val, field opti, create _MaterialSubCondition, update _MaterialSubCondition ); }
+
+  update;
+  delete;
+  association _Promotion { with draft; }
+  association _MaterialSubCondition { create; with draft; }
+}
+
+define behavior for ZPRO_I_MSUBCO alias MaterialSubCondition
+persistent table zpro_tb_msubco
+early numbering
+draft table zpro_tb_msubco_d
+lock dependent by _Promotion
+authorization dependent by _Promotion
+{
+  field ( readonly )
+  pronr,
+  matconid,
+  msubcoid;
+
+  update;
+  delete;
+  ancestor association _Promotion { with draft; }
+  association _MaterialCondition { with draft; }
+}
+
+define behavior for ZPRO_I_PISUBCO alias ItemSubCondition
+persistent table zpro_tb_pisubco
+early numbering
+draft table zpro_tb_pisubc_d
+lock dependent by _Promotion
+authorization dependent by _Promotion
+{
+  field ( readonly )
+  pronr,
+  proit,
+  pisubcoid;
+
+  update;
+  delete;
+  ancestor association _Promotion { with draft; }
+  association _PromotionItem { with draft; }
+}
